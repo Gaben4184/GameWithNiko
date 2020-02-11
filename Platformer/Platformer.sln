@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer", "Platformer\Platformer.csproj", "{817ED880-624E-4600-953E-00DAE4793DD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{817ED880-624E-4600-953E-00DAE4793DD4}.Debug|x86.ActiveCfg = Debug|x86
+		{817ED880-624E-4600-953E-00DAE4793DD4}.Debug|x86.Build.0 = Debug|x86
+		{817ED880-624E-4600-953E-00DAE4793DD4}.Release|x86.ActiveCfg = Release|x86
+		{817ED880-624E-4600-953E-00DAE4793DD4}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AFA3F516-1DD9-4EEE-9C80-88E2E4B02AAC}
+	EndGlobalSection
+EndGlobal
