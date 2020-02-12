@@ -46,9 +46,10 @@ namespace Platformer
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
             playerText = Content.Load<Texture2D>("Circle");
             enemyText = Content.Load<Texture2D>("Square");
-            // TODO: use this.Content to load your game content here
+            
         }
 
         /// <summary>
@@ -70,7 +71,7 @@ namespace Platformer
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            
 
             base.Update(gameTime);
         }
