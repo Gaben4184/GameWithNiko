@@ -83,8 +83,10 @@ namespace Platformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            Color col1 = new Color(168, 9, 9, 255);
             spriteBatch.Begin();
-            spriteBatch.Draw(playerText, playerRect, Color.White);
+            spriteBatch.Draw(playerText, playerRect, col1 );
             spriteBatch.End();
             
 
