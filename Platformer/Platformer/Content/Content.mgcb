@@ -47,5 +47,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sqaure.png;Square.png
+/build:Sqaure.png
 
