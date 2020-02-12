@@ -15,7 +15,7 @@ namespace Platformer
         Texture2D playerText;
         Rectangle playerRect;
 
-        Texture2D enemyTexture;
+        Texture2D enemyText;
         Rectangle enemyRect;
         public Game1()
         {
@@ -44,7 +44,7 @@ namespace Platformer
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            spriteBatch = Content.Load<Texture2D>("Circle")
+            playerText = Content.Load<Texture2D>("Circle")
 
             // TODO: use this.Content to load your game content here
         }
@@ -67,8 +67,8 @@ namespace Platformer
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
+            
+            
 
             base.Update(gameTime);
         }
@@ -81,7 +81,7 @@ namespace Platformer
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(PlayerText, PlayerRect, Color.White);
+            spriteBatch.Draw(playerText, playerRect, Color.White);
             spriteBatch.End();
             
 
