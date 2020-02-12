@@ -79,10 +79,10 @@ namespace SideScroller
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            Color col1 = new Color(168, 9, 9, 150);
             spriteBatch.Begin();
-            spriteBatch.DrawString(gameFont, "How are you", new Vector2(0,0), Color.Maroon );
-            spriteBatch.DrawString(gameFont, "Hello there", new Vector2(300, 300), Color.SkyBlue );
+            spriteBatch.DrawString(gameFont, "Hello there", new Vector2(300,300), Color.Maroon );
+            spriteBatch.DrawString(gameFont, "Hello there", new Vector2(305, 305), col1);
             spriteBatch.End();
 
             base.Draw(gameTime);

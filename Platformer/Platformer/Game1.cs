@@ -17,6 +17,8 @@ namespace Platformer
 
         Texture2D enemyText;
         Rectangle enemyRect;
+
+        int speed;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -31,7 +33,7 @@ namespace Platformer
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            speed = 5;
 
             base.Initialize();
         }
