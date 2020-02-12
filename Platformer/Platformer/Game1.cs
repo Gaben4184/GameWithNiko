@@ -88,6 +88,7 @@ namespace Platformer
             spriteBatch.Begin();
             spriteBatch.Draw(playerText, playerRect, Color.White);
             spriteBatch.Draw(enemyText, enemyRect, Color.White);
+            //test for branch
             spriteBatch.End();
             
 
