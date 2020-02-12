@@ -48,7 +48,7 @@ namespace Platformer
             spriteBatch = new SpriteBatch(GraphicsDevice);
             playerText = Content.Load<Texture2D>("Circle");
             enemyText = Content.Load<Texture2D>("Square");
-            // TODO: use this.Content to load your game content here
+            
         }
 
         /// <summary>
