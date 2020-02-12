@@ -14,6 +14,8 @@ namespace Platformer
 
         Texture2D PlayerText;
         Rectangle PlayerRect;
+
+        Texture2D Enemy;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
