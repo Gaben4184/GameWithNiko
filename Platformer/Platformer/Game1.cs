@@ -12,8 +12,8 @@ namespace Platformer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D Player;
-        Rectangle Player;
+        Texture2D PlayerText;
+        Rectangle PlayerRect;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -77,8 +77,8 @@ namespace Platformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin()
-            spriteBatch.Draw(Circle, new Rectangle(0, 0, 800, 480), Color.White)
+            spriteBatch.Begin();
+            spriteBatch.Draw(PlayerText, PlayerRect, Color.White);
             spriteBatch.End();
             
 
