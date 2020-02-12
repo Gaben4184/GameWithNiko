@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Platformer
+namespace SideScroller
 {
     /// <summary>
     /// This is the main type for your game.
@@ -12,11 +12,9 @@ namespace Platformer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D playerText;
-        Rectangle playerRect;
+        // Text
+        SpriteFont gameFont;
 
-        Texture2D enemyText;
-        Rectangle enemyRect;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -44,8 +42,9 @@ namespace Platformer
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            playerText = Content.Load<Texture2D>("Circle");
-            enemyText = Content.Load<Texture2D>("Square");
+
+            gameFont = Content.Load<SpriteFont>("File");
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -68,7 +67,7 @@ namespace Platformer
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            
 
             base.Update(gameTime);
         }
@@ -80,10 +79,11 @@ namespace Platformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
             spriteBatch.Begin();
-            spriteBatch.Draw(playerText, playerRect, Color.White);
+            spriteBatch.DrawString(gameFont, "How are you", new Vector2(0,0), Color.Maroon );
+            spriteBatch.DrawString(gameFont, "Hello there", new Vector2(300, 300), Color.SkyBlue );
             spriteBatch.End();
-            
 
             base.Draw(gameTime);
         }
