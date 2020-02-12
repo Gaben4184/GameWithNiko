@@ -12,10 +12,11 @@ namespace Platformer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D PlayerText;
-        Rectangle PlayerRect;
+        Texture2D playerText;
+        Rectangle playerRect;
 
-        Texture2D Enemy;
+        Texture2D enemyTexture;
+        Rectangle enemyRect;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
