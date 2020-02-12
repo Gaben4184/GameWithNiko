@@ -86,7 +86,7 @@ namespace Platformer
 
             Color col1 = new Color(168, 9, 9, 255);
             spriteBatch.Begin();
-            spriteBatch.Draw(playerText, playerRect, col1 );
+            spriteBatch.Draw(playerText, playerRect, Color.White );
             spriteBatch.End();
             
 
