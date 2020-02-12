@@ -44,8 +44,8 @@ namespace Platformer
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            spriteBatch = Content.Load<Texture2D>("Circle")
-
+            playerText = Content.Load<Texture2D>("Circle");
+            playerText = Content.Load<Texture2D>("Square");
             // TODO: use this.Content to load your game content here
         }
 
@@ -81,7 +81,7 @@ namespace Platformer
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(PlayerText, PlayerRect, Color.White);
+            spriteBatch.Draw(playerText, playerRect, Color.White);
             spriteBatch.End();
             
 
