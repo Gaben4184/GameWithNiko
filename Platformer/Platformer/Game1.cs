@@ -12,8 +12,8 @@ namespace Platformer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D BackgroundText;
-        Rectangle BackgroundRect;
+        Texture2D Player;
+        Rectangle Player;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -41,6 +41,7 @@ namespace Platformer
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = Content.Load<Texture2D>("Circle")
 
             // TODO: use this.Content to load your game content here
         }
@@ -76,8 +77,10 @@ namespace Platformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
+            spriteBatch.Begin()
+            spriteBatch.Draw(Circle, new Rectangle(0, 0, 800, 480), Color.White)
+            spriteBatch.End();
+            
 
             base.Draw(gameTime);
         }
