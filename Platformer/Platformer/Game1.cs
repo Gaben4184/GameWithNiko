@@ -72,10 +72,10 @@ namespace Platformer
             startText = Content.Load<Texture2D>("Meme5");
 
             //player textures
-            playerText = Content.Load<Texture2D>("Circle");
+            playerText = Content.Load<Texture2D>("chef1");
 
             //enemy textures
-            chef1Text = Content.Load<Texture2D>("Sqaure");
+            chef1Text = Content.Load<Texture2D>("chef2");
 
             //variables
             state = 1;
@@ -125,6 +125,8 @@ namespace Platformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+
             if (state == 1)
             {
                 spriteBatch.Draw(startText, startRect, Color.White);
@@ -133,11 +135,12 @@ namespace Platformer
             if (state == 2)
             {
                 Color col1 = new Color(168, 9, 9, 255);
-                spriteBatch.Begin();
+                
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
-                spriteBatch.End();
+                
             }
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
