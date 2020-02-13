@@ -67,8 +67,10 @@ namespace Platformer
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
             //Background
-            startText = Content.Load<Texture2D>("Meme3");
+            startText = Content.Load<Texture2D>("Meme5");
+
             //player textures
             playerText = Content.Load<Texture2D>("Circle");
 
