@@ -15,8 +15,8 @@ namespace Platformer
         Texture2D playerText;
         Rectangle playerRect;
 
-        Texture2D enemyText;
-        Rectangle enemyRect;
+        Texture2D chef1Text;
+        Rectangle chef1Rect;
 
         int speed;
         public Game1()
@@ -41,7 +41,7 @@ namespace Platformer
             speed = 5;
 
             playerRect = new Rectangle(300, 300, 50, 59);
-            enemyRect = new Rectangle(500, 300, 100, 100);
+            chef1Rect = new Rectangle(500, 300, 100, 100);
             base.Initialize();
         }
 
@@ -54,7 +54,7 @@ namespace Platformer
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             playerText = Content.Load<Texture2D>("Circle");
-            enemyText = Content.Load<Texture2D>("Sqaure");
+            chef1Text = Content.Load<Texture2D>("Sqaure");
             
         }
 
@@ -93,7 +93,7 @@ namespace Platformer
             Color col1 = new Color(168, 9, 9, 255);
             spriteBatch.Begin();
             spriteBatch.Draw(playerText, playerRect, Color.White);
-            spriteBatch.Draw(enemyText, enemyRect, Color.White);
+            spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
             spriteBatch.End();
             
 
