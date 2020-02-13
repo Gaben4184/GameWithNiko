@@ -12,13 +12,19 @@ namespace Platformer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        //Player pizza
         Texture2D playerText;
         Rectangle playerRect;
 
+        //Enemy stuff
         Texture2D chef1Text;
         Rectangle chef1Rect;
 
+        //variables
+        KeyboardState oldKB;
+        int state = 0;
         int speed;
+        int Lives;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -53,9 +59,15 @@ namespace Platformer
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            //player textures
             playerText = Content.Load<Texture2D>("Circle");
+
+            //enemy textures
             chef1Text = Content.Load<Texture2D>("Sqaure");
-            
+
+            //variables
+            state = 1;
         }
 
         /// <summary>
@@ -76,8 +88,21 @@ namespace Platformer
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
-            
+            if (state == 1)
+            {
+                KeyboardState kb = Keyboard.GetState();
+                if (kb.IsKeyDown(Keys.Space) && oldKB.IsKeyUp(Keys.Space))
+                {
+                    state = 2;
+                }
+            }
+            if (state == 2)
+            {
+                checkKeys();
+                checkCollision();                
+                checkLives();                
+            }
+
 
             base.Update(gameTime);
         }
@@ -98,6 +123,59 @@ namespace Platformer
             
 
             base.Draw(gameTime);
+        }
+        private void checkKeys()
+        {
+            //Game controls
+            KeyboardState kb = Keyboard.GetState();
+            if (kb.IsKeyDown(Keys.A) && oldKB.IsKeyUp(Keys.A))
+            {
+                playerRect.X -= 50;
+            }
+            if (kb.IsKeyDown(Keys.W) && oldKB.IsKeyUp(Keys.W))
+            {
+                playerRect.Y -= 50;
+            }
+            if (kb.IsKeyDown(Keys.D) && oldKB.IsKeyUp(Keys.D))
+            {
+                playerRect.X += 50;
+            }
+            if (kb.IsKeyDown(Keys.S) && oldKB.IsKeyUp(Keys.S))
+            {
+                playerRect.Y += 50;
+            }
+            oldKB = kb;
+        }
+        private void checkCollision()
+        {
+            if (playerRect.Intersects(chef1Rect))
+            {
+                playerRect.Location = new Point(375, 550);
+                Lives -= 1;
+            }
+            /*if (playerRect.Intersects(car2Rect))
+            {
+                playerRect.Location = new Point(375, 550);
+                Lives -= 1;
+            }
+            if (playerRect.Intersects(car3Rect))
+            {
+                playerRect.Location = new Point(375, 550);
+                Lives -= 1;
+            }
+            */
+            if (playerRect.Intersects(appleRect))
+            {
+                state = 4;
+            }
+        }
+        private void checkLives()
+        {
+            if (Lives == 0)
+            {
+                state = 3;
+            }
+
         }
     }
 }
