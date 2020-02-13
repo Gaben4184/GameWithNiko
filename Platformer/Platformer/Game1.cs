@@ -34,7 +34,8 @@ namespace Platformer
         protected override void Initialize()
         {
             speed = 5;
-
+            playerRect = new Rectangle(300, 300, 50, 59);
+            enemyRect = new Rectangle(500, 300, 100, 100);
             base.Initialize();
         }
 
@@ -46,9 +47,8 @@ namespace Platformer
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
             playerText = Content.Load<Texture2D>("Circle");
-            enemyText = Content.Load<Texture2D>("Square");
+            enemyText = Content.Load<Texture2D>("Sqaure");
             
         }
 
@@ -70,7 +70,7 @@ namespace Platformer
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            
             
 
             base.Update(gameTime);
@@ -86,7 +86,8 @@ namespace Platformer
 
             Color col1 = new Color(168, 9, 9, 255);
             spriteBatch.Begin();
-            spriteBatch.Draw(playerText, playerRect, Color.White );
+            spriteBatch.Draw(playerText, playerRect, Color.White);
+            spriteBatch.Draw(enemyText, enemyRect, Color.White);
             spriteBatch.End();
             
 
