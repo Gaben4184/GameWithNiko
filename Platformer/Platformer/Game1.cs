@@ -33,7 +33,13 @@ namespace Platformer
         /// </summary>
         protected override void Initialize()
         {
+            //background
+            this.graphics.PreferredBackBufferWidth = 1200;
+            this.graphics.PreferredBackBufferHeight = 800;
+            this.graphics.ApplyChanges();
+
             speed = 5;
+
             playerRect = new Rectangle(300, 300, 50, 59);
             enemyRect = new Rectangle(500, 300, 100, 100);
             base.Initialize();

@@ -15,10 +15,18 @@ namespace SideScroller
         // Text
         SpriteFont gameFont;
 
+        //mouse stuff
+        GraphicsDeviveManager graphics;
+        SpriteBatch spriteBatch;
+        MouseState mouse;
+
+
         public Game1()
         {
+            IsMouseVisible = true;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
         }
 
         /// <summary>
@@ -67,7 +75,15 @@ namespace SideScroller
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            
+            //mouse
+            mouse = Mouse.GetState();
+            if (mouse.LeftButton.Equals(ButtonState.Pressed) && button1.Contains(new Point(mouse.X, mouse.Y)))
+            {
+                button1.X += 20;
+                button1.Y += 20;
+
+            }
+
 
             base.Update(gameTime);
         }
