@@ -20,16 +20,22 @@ namespace Platformer
         Texture2D chef1Text;
         Rectangle chef1Rect;
 
-        //backgrounds
-        Texture2D startText;
-        Rectangle startRect;
-
+        //pizzasteve animations
+        Texture2D pizzasteve1;
+        Texture2D pizzasteve2;
+        Texture2D pizzasteve3;
+        Texture2D animateSteve;
+        Rectangle animateRect;
+        int animateCount = 0;
+        int animateSpeed = 10;
+        int animateNumPics = 3;
         //variables
         KeyboardState oldKB;
         int state = 0;
         int speed;
         int Lives;
 
+        public int State { get => state; set => state = value; }
 
         public Game1()
         {
@@ -50,12 +56,14 @@ namespace Platformer
             this.graphics.PreferredBackBufferHeight = 800;
             this.graphics.ApplyChanges();
 
-            startRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-
             speed = 5;
 
             playerRect = new Rectangle(300, 300, 50, 59);
             chef1Rect = new Rectangle(500, 300, 100, 100);
+            animateRect = new Rectangle(100, 300, 50, 50);
+            animateSpeed = 20;
+            animateNumPics = 3;
+            animateCount = 0;
             base.Initialize();
         }
 
@@ -68,17 +76,18 @@ namespace Platformer
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //Background
-            startText = Content.Load<Texture2D>("Meme5");
-
             //player textures
-            playerText = Content.Load<Texture2D>("chef1");
+            playerText = Content.Load<Texture2D>("pizzasteve1");
 
             //enemy textures
-            chef1Text = Content.Load<Texture2D>("chef2");
+            chef1Text = Content.Load<Texture2D>("chef1");
+            pizzasteve1 = Content.Load<Texture2D>("pizzasteve1");
+            pizzasteve2 = Content.Load<Texture2D>("pizzasteve2");
+            pizzasteve3 = Content.Load<Texture2D>("pizzasteve3"); 
+            playerText = pizzasteve1;
 
             //variables
-            state = 1;
+            State = 1;
         }
 
         /// <summary>
@@ -99,15 +108,15 @@ namespace Platformer
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (state == 1)
+            if (State == 1)
             {
                 KeyboardState kb = Keyboard.GetState();
                 if (kb.IsKeyDown(Keys.Space) && oldKB.IsKeyUp(Keys.Space))
                 {
-                    state = 2;
+                    State = 2;
                 }
             }
-            if (state == 2)
+            if (State == 2)
             {
                 checkKeys();
                 checkCollision();
@@ -125,22 +134,13 @@ namespace Platformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            Color col1 = new Color(168, 9, 9, 255);
             spriteBatch.Begin();
-
-            if (state == 1)
-            {
-                spriteBatch.Draw(startText, startRect, Color.White);
-            }
-
-            if (state == 2)
-            {
-                Color col1 = new Color(168, 9, 9, 255);
-                
-                spriteBatch.Draw(playerText, playerRect, Color.White);
-                spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
-                
-            }
+            spriteBatch.Draw(playerText, playerRect, Color.White);
+            spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
             spriteBatch.End();
+
 
             base.Draw(gameTime);
         }
@@ -151,6 +151,23 @@ namespace Platformer
             if (kb.IsKeyDown(Keys.A) && oldKB.IsKeyUp(Keys.A))
             {
                 playerRect.X -= 50;
+                animateCount++;
+                if (animateCount < animateSpeed)
+                {
+                    playerText = pizzasteve1;
+                }
+                else if (animateCount < animateSpeed * 2)
+                {
+                    playerText = pizzasteve2;
+                }
+                else if (animateCount < animateSpeed * 3)
+                {
+                    playerText = pizzasteve3;
+                }
+                else
+                {
+                    animateCount = 0;
+                }
             }
             if (kb.IsKeyDown(Keys.W) && oldKB.IsKeyUp(Keys.W))
             {
@@ -159,6 +176,23 @@ namespace Platformer
             if (kb.IsKeyDown(Keys.D) && oldKB.IsKeyUp(Keys.D))
             {
                 playerRect.X += 50;
+                animateCount++;
+                if (animateCount < animateSpeed)
+                {
+                    playerText = pizzasteve1;
+                }
+                else if (animateCount < animateSpeed * 2)
+                {
+                    playerText = pizzasteve2;
+                }
+                else if (animateCount < animateSpeed * 3)
+                {
+                    playerText = pizzasteve3;
+                }
+                else
+                {
+                    animateCount = 0;
+                }
             }
             if (kb.IsKeyDown(Keys.S) && oldKB.IsKeyUp(Keys.S))
             {
@@ -186,7 +220,7 @@ namespace Platformer
             
             if (playerRect.Intersects(appleRect))
             {
-                state = 4;
+                State = 4;
             }
             */
         }
@@ -194,7 +228,7 @@ namespace Platformer
         {
             if (Lives == 0)
             {
-                state = 3;
+                State = 3;
             }
 
         }
