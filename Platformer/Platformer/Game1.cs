@@ -31,11 +31,11 @@ namespace Platformer
         int animateNumPics = 3;
         //variables
         KeyboardState oldKB;
-        int state = 0;
+        int state;
         int speed;
         int Lives;
 
-        public int State { get => state; set => state = value; }
+        
 
         public Game1()
         {
@@ -87,7 +87,7 @@ namespace Platformer
             playerText = pizzasteve1;
 
             //variables
-            State = 1;
+            state = 1;
         }
 
         /// <summary>
@@ -108,15 +108,15 @@ namespace Platformer
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (State == 1)
+            if (state == 1)
             {
                 KeyboardState kb = Keyboard.GetState();
                 if (kb.IsKeyDown(Keys.Space) && oldKB.IsKeyUp(Keys.Space))
                 {
-                    State = 2;
+                    state = 2;
                 }
             }
-            if (State == 2)
+            if (state == 2)
             {
                 checkKeys();
                 checkCollision();
@@ -220,7 +220,7 @@ namespace Platformer
             
             if (playerRect.Intersects(appleRect))
             {
-                State = 4;
+                state = 4;
             }
             */
         }
@@ -228,7 +228,7 @@ namespace Platformer
         {
             if (Lives == 0)
             {
-                State = 3;
+                state = 3;
             }
 
         }
