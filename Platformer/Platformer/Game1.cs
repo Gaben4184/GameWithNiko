@@ -35,7 +35,6 @@ namespace Platformer
         int speed;
         int Lives;
 
-        public int State { get => state; set => state = value; }
 
         public Game1()
         {
@@ -55,6 +54,8 @@ namespace Platformer
             this.graphics.PreferredBackBufferWidth = 1200;
             this.graphics.PreferredBackBufferHeight = 800;
             this.graphics.ApplyChanges();
+
+            startRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             speed = 5;
 
@@ -76,6 +77,9 @@ namespace Platformer
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //Background
+            startText = Content.Load<Texture2D>("Meme5");
+
             //player textures
             playerText = Content.Load<Texture2D>("pizzasteve1");
 
@@ -87,7 +91,7 @@ namespace Platformer
             playerText = pizzasteve1;
 
             //variables
-            State = 1;
+            state = 1;
         }
 
         /// <summary>
@@ -108,15 +112,15 @@ namespace Platformer
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (State == 1)
+            if (state == 1)
             {
                 KeyboardState kb = Keyboard.GetState();
                 if (kb.IsKeyDown(Keys.Space) && oldKB.IsKeyUp(Keys.Space))
                 {
-                    State = 2;
+                    state = 2;
                 }
             }
-            if (State == 2)
+            if (state == 2)
             {
                 checkKeys();
                 checkCollision();
@@ -134,13 +138,22 @@ namespace Platformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            Color col1 = new Color(168, 9, 9, 255);
             spriteBatch.Begin();
-            spriteBatch.Draw(playerText, playerRect, Color.White);
-            spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
-            spriteBatch.End();
 
+            if (state == 1)
+            {
+                spriteBatch.Draw(startText, startRect, Color.White);
+            }
+
+            if (state == 2)
+            {
+                Color col1 = new Color(168, 9, 9, 255);
+                
+                spriteBatch.Draw(playerText, playerRect, Color.White);
+                spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
+                
+            }
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
@@ -220,7 +233,7 @@ namespace Platformer
             
             if (playerRect.Intersects(appleRect))
             {
-                State = 4;
+                state = 4;
             }
             */
         }
@@ -228,7 +241,7 @@ namespace Platformer
         {
             if (Lives == 0)
             {
-                State = 3;
+                state = 3;
             }
 
         }
