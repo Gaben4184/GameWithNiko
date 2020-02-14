@@ -20,6 +20,15 @@ namespace Platformer
         Texture2D chef1Text;
         Rectangle chef1Rect;
 
+        //pizzasteve animations
+        Texture2D pizzasteve1;
+        Texture2D pizzasteve2;
+        Texture2D pizzasteve3;
+        Texture2D animateSteve;
+        Rectangle animateRect;
+        int animateCount = 0;
+        int animateSpeed = 10;
+        int animateNumPics = 3;
         //variables
         KeyboardState oldKB;
         int state = 0;
@@ -51,6 +60,10 @@ namespace Platformer
 
             playerRect = new Rectangle(300, 300, 50, 59);
             chef1Rect = new Rectangle(500, 300, 100, 100);
+            animateRect = new Rectangle(100, 300, 50, 50);
+            animateSpeed = 20;
+            animateNumPics = 3;
+            animateCount = 0;
             base.Initialize();
         }
 
@@ -64,10 +77,14 @@ namespace Platformer
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //player textures
-            playerText = Content.Load<Texture2D>("Circle");
+            playerText = Content.Load<Texture2D>("pizzasteve1");
 
             //enemy textures
-            chef1Text = Content.Load<Texture2D>("Sqaure");
+            chef1Text = Content.Load<Texture2D>("chef1");
+            pizzasteve1 = Content.Load<Texture2D>("pizzasteve1");
+            pizzasteve2 = Content.Load<Texture2D>("pizzasteve2");
+            pizzasteve3 = Content.Load<Texture2D>("pizzasteve3"); 
+            playerText = pizzasteve1;
 
             //variables
             State = 1;
@@ -134,6 +151,23 @@ namespace Platformer
             if (kb.IsKeyDown(Keys.A) && oldKB.IsKeyUp(Keys.A))
             {
                 playerRect.X -= 50;
+                animateCount++;
+                if (animateCount < animateSpeed)
+                {
+                    playerText = pizzasteve1;
+                }
+                else if (animateCount < animateSpeed * 2)
+                {
+                    playerText = pizzasteve2;
+                }
+                else if (animateCount < animateSpeed * 3)
+                {
+                    playerText = pizzasteve3;
+                }
+                else
+                {
+                    animateCount = 0;
+                }
             }
             if (kb.IsKeyDown(Keys.W) && oldKB.IsKeyUp(Keys.W))
             {
@@ -142,6 +176,23 @@ namespace Platformer
             if (kb.IsKeyDown(Keys.D) && oldKB.IsKeyUp(Keys.D))
             {
                 playerRect.X += 50;
+                animateCount++;
+                if (animateCount < animateSpeed)
+                {
+                    playerText = pizzasteve1;
+                }
+                else if (animateCount < animateSpeed * 2)
+                {
+                    playerText = pizzasteve2;
+                }
+                else if (animateCount < animateSpeed * 3)
+                {
+                    playerText = pizzasteve3;
+                }
+                else
+                {
+                    animateCount = 0;
+                }
             }
             if (kb.IsKeyDown(Keys.S) && oldKB.IsKeyUp(Keys.S))
             {
