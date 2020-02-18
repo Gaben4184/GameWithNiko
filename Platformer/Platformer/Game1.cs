@@ -31,7 +31,12 @@ namespace Platformer
         /// </summary>
         protected override void Initialize()
         {
+            this.graphics.PreferredBackBufferWidth = 1200;
+            this.graphics.PreferredBackBufferHeight = 800;
+            this.graphics.ApplyChanges();
+
             playerRect = new Rectangle(100, 100, 100, 100);
+
             base.Initialize();
         }
 
