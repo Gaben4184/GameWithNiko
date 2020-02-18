@@ -145,16 +145,7 @@ namespace Platformer
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
-            if (state == 1)
-            {
-                spriteBatch.Draw(startText, startRect, Color.White);
-            }
-
-            spriteBatch.Begin();
-            if (state == 1)
-            {
-                spriteBatch.Draw(startText, startRect, Color.White);
-            }
+        
 
             if (state == 2)
             {
@@ -173,23 +164,7 @@ namespace Platformer
             if (kb.IsKeyDown(Keys.A) && oldKB.IsKeyUp(Keys.A))
             {
                 playerRect.X -= 5;
-                animateCount++;
-                if (animateCount < animateSpeed)
-                {
-                    playerText = pizzasteve1;
-                }
-                else if (animateCount < animateSpeed * 2)
-                {
-                    playerText = pizzasteve2;
-                }
-                else if (animateCount < animateSpeed * 3)
-                {
-                    playerText = pizzasteve3;
-                }
-                else
-                {
-                    animateCount = 0;
-                }
+             
             }
             if (kb.IsKeyDown(Keys.W) && oldKB.IsKeyUp(Keys.W))
             {
@@ -198,23 +173,7 @@ namespace Platformer
             if (kb.IsKeyDown(Keys.D) && oldKB.IsKeyUp(Keys.D))
             {
                 playerRect.X += 50;
-                animateCount++;
-                if (animateCount < animateSpeed)
-                {
-                    playerText = pizzasteve1;
-                }
-                else if (animateCount < animateSpeed * 2)
-                {
-                    playerText = pizzasteve2;
-                }
-                else if (animateCount < animateSpeed * 3)
-                {
-                    playerText = pizzasteve3;
-                }
-                else
-                {
-                    animateCount = 0;
-                }
+              
             }
             if (kb.IsKeyDown(Keys.S) && oldKB.IsKeyUp(Keys.S))
             {
