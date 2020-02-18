@@ -12,6 +12,9 @@ namespace Platformer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Texture2D playerText;
+        Rectangle playerRect;
+
         
 
         public Game1()
@@ -28,7 +31,7 @@ namespace Platformer
         /// </summary>
         protected override void Initialize()
         {
-            
+            playerRect = new Rectangle(100, 100, 100, 100);
             base.Initialize();
         }
 
@@ -41,6 +44,7 @@ namespace Platformer
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            playerText = Content.Load<Texture2D>("pizzasteve1");
             
         }
 
@@ -76,6 +80,9 @@ namespace Platformer
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            spriteBatch.Begin();
+            spriteBatch.Draw(playerText, playerRect, Color.White);
+            spriteBatch.End();
             
             base.Draw(gameTime);
         }
