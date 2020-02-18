@@ -35,7 +35,8 @@ namespace Platformer
         int speed;
         int Lives;
 
-
+        Texture2D startText;
+        Rectangle startRect;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -81,14 +82,14 @@ namespace Platformer
             startText = Content.Load<Texture2D>("Meme5");
 
             //player textures
-            playerText = Content.Load<Texture2D>("pizzasteve1");
-
-            //enemy textures
-            chef1Text = Content.Load<Texture2D>("chef1");
-            pizzasteve1 = Content.Load<Texture2D>("pizzasteve1");
+             pizzasteve1 = Content.Load<Texture2D>("pizzasteve1");
             pizzasteve2 = Content.Load<Texture2D>("pizzasteve2");
             pizzasteve3 = Content.Load<Texture2D>("pizzasteve3"); 
             playerText = pizzasteve1;
+
+            //enemy textures
+            chef1Text = Content.Load<Texture2D>("chef1");
+           
 
             //variables
             state = 1;
@@ -121,6 +122,7 @@ namespace Platformer
                 }
             }
             if (state == 2)
+
             {
                 checkKeys();
                 checkCollision();
