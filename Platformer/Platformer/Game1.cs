@@ -29,13 +29,16 @@ namespace Platformer
         int animateCount = 0;
         int animateSpeed = 10;
         int animateNumPics = 3;
+
         //variables
         KeyboardState oldKB;
         int state;
         int speed;
         int Lives;
 
-        
+        //background
+        Texture2D startText;
+        Rectangle startRect;
 
         public Game1()
         {
@@ -55,6 +58,7 @@ namespace Platformer
             this.graphics.PreferredBackBufferWidth = 1200;
             this.graphics.PreferredBackBufferHeight = 800;
             this.graphics.ApplyChanges();
+            startRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight); 
 
             speed = 5;
 
@@ -77,14 +81,16 @@ namespace Platformer
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //player textures
-            playerText = Content.Load<Texture2D>("pizzasteve1");
-
-            //enemy textures
-            chef1Text = Content.Load<Texture2D>("chef1");
             pizzasteve1 = Content.Load<Texture2D>("pizzasteve1");
             pizzasteve2 = Content.Load<Texture2D>("pizzasteve2");
             pizzasteve3 = Content.Load<Texture2D>("pizzasteve3"); 
             playerText = pizzasteve1;
+
+            //enemy textures
+            chef1Text = Content.Load<Texture2D>("chef1");
+
+            //Background
+            startText = Content.Load<Texture2D>("Meme5");
 
             //variables
             state = 1;
@@ -135,13 +141,19 @@ namespace Platformer
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            Color col1 = new Color(168, 9, 9, 255);
             spriteBatch.Begin();
-            spriteBatch.Draw(playerText, playerRect, Color.White);
-            spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
+            if (state == 1)
+            {
+                spriteBatch.Draw(startText, startRect, Color.White);
+            }
+
+            if (state == 2)
+            {
+                spriteBatch.Draw(playerText, playerRect, Color.White);
+                spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
+                
+            }
             spriteBatch.End();
-
-
             base.Draw(gameTime);
         }
         private void checkKeys()
@@ -150,7 +162,7 @@ namespace Platformer
             KeyboardState kb = Keyboard.GetState();
             if (kb.IsKeyDown(Keys.A) && oldKB.IsKeyUp(Keys.A))
             {
-                playerRect.X -= 50;
+                playerRect.X -= 5;
                 animateCount++;
                 if (animateCount < animateSpeed)
                 {
@@ -171,7 +183,7 @@ namespace Platformer
             }
             if (kb.IsKeyDown(Keys.W) && oldKB.IsKeyUp(Keys.W))
             {
-                playerRect.Y -= 50;
+                playerRect.Y -= 5;
             }
             if (kb.IsKeyDown(Keys.D) && oldKB.IsKeyUp(Keys.D))
             {
