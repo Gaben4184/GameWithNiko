@@ -15,6 +15,16 @@ namespace Platformer
         //player stuff
         Texture2D playerText;
         Rectangle playerRect;
+        //Added for animation
+        Texture2D animateplayer;
+        Rectangle animateRect;
+        int animateCount = 0;
+        int animateSpeed = 10;
+        int animateNumPics = 3;
+        Texture2D player1;
+        Texture2D player2;
+        Texture2D player3;
+
 
         //enemy stuff
         Texture2D chef1Text;
@@ -56,6 +66,11 @@ namespace Platformer
 
             //player stuff 
             playerRect = new Rectangle(100, 100, 100, 100);
+            //animateRect = new Rectangle(100, 300, 24, 59);
+            animateSpeed = 20;
+            animateNumPics = 3;
+            animateCount = 0;
+
 
             //enemy stuff 
             chef1Rect = new Rectangle(200, 200, 100, 100);
@@ -76,7 +91,13 @@ namespace Platformer
             startText = Content.Load<Texture2D>("Meme5");
 
             //player stuff
-            playerText = Content.Load<Texture2D>("pizzasteve1");
+            
+            player1 = Content.Load<Texture2D>("pizzasteve1");
+            player2 = Content.Load<Texture2D>("pizzasteve2");
+            player3 = Content.Load<Texture2D>("pizzasteve3");
+
+            playerText = player1;
+
 
             //enemy stuff 
             chef1Text = Content.Load<Texture2D>("chef1");
@@ -112,7 +133,8 @@ namespace Platformer
             }
             if (state == 2)
             {
-                checkKeys();               
+                checkKeys();
+                animateEnemyCode();
             }
 
 
@@ -137,6 +159,7 @@ namespace Platformer
             {
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
+                spriteBatch.Draw(playerText, animateRect, Color.White);
             }
 
             spriteBatch.End();
@@ -164,6 +187,47 @@ namespace Platformer
                 playerRect.Y += 5;
             }
             
+        }
+        private void animateEnemyCode()
+        {
+            animateCount++;
+            if (animateCount < animateSpeed)
+            {
+                playerText = player1;
+            }
+            else if (animateCount < animateSpeed * 2)
+            {
+                playerText = player3;
+            }
+            else if (animateCount < animateSpeed * 3)
+            {
+                playerText = player2;
+            }
+            else if (animateCount < animateSpeed * 4)
+            {
+                playerText = player3;
+            }
+            else if (animateCount < animateSpeed * 5)
+            {
+                playerText = player4;
+            }
+            else if (animateCount < animateSpeed * 6)
+            {
+                playerText = player5;
+            }
+            else if (animateCount < animateSpeed * 7)
+            {
+                playerText = player4;
+            }
+            else if (animateCount < animateSpeed * 8)
+            {
+                playerText = player1;
+            }
+            else
+            {
+                animateCount = 0;
+            }
+
         }
     }
 }
