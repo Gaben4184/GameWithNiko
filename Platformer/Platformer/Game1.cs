@@ -14,8 +14,10 @@ namespace Platformer
 
         Texture2D playerText;
         Rectangle playerRect;
+        //enemy texture and rect
+        Texture2D chef1Text;
+        Rectangle chef1Rect;
 
-        
 
         public Game1()
         {
@@ -32,9 +34,10 @@ namespace Platformer
         protected override void Initialize()
         {
             playerRect = new Rectangle(100, 100, 100, 100);
+            chef1Rect = new Rectangle(200, 200, 100, 100);
             base.Initialize();
         }
-
+        
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -45,7 +48,8 @@ namespace Platformer
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             playerText = Content.Load<Texture2D>("pizzasteve1");
-            
+            chef1Text = Content.Load<Texture2D>("chef1");
+
         }
 
         /// <summary>
@@ -82,10 +86,10 @@ namespace Platformer
 
             spriteBatch.Begin();
             spriteBatch.Draw(playerText, playerRect, Color.White);
+            spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
             spriteBatch.End();
             
             base.Draw(gameTime);
         }
-        
     }
 }
