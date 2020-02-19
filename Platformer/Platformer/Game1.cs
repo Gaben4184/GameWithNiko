@@ -26,7 +26,11 @@ namespace Platformer
         Texture2D player3;
         Texture2D player4;
         Texture2D player5;
-     
+        Texture2D fplayer1;
+        Texture2D fplayer2;
+        Texture2D fplayer3;
+        Texture2D fplayer4;
+        Texture2D fplayer5;
 
         //enemy stuff
         Texture2D chef1Text;
@@ -99,6 +103,11 @@ namespace Platformer
             player3 = Content.Load<Texture2D>("pizzasteve3");
             player4 = Content.Load<Texture2D>("pizzasteve4");
             player5 = Content.Load<Texture2D>("pizzasteve5");
+            fplayer1 = Content.Load<Texture2D>("fpizzasteve1");
+            fplayer2 = Content.Load<Texture2D>("fpizzasteve2");
+            fplayer3 = Content.Load<Texture2D>("fpizzasteve3");
+            fplayer4 = Content.Load<Texture2D>("fpizzasteve4");
+            fplayer5 = Content.Load<Texture2D>("fpizzasteve5");
 
             playerText = player1;
 
@@ -138,7 +147,7 @@ namespace Platformer
             if (state == 2)
             {
                 checkKeys();
-                animateEnemyCode();
+               
             }
 
 
@@ -177,6 +186,7 @@ namespace Platformer
             if (kb.IsKeyDown(Keys.A))
             {
                 playerRect.X -= 5;
+                Lanimatecode();
             }
             if (kb.IsKeyDown(Keys.W))
             {
@@ -185,6 +195,7 @@ namespace Platformer
             if (kb.IsKeyDown(Keys.D))
             {
                 playerRect.X += 5;
+                Ranimatecode();
             }
             if (kb.IsKeyDown(Keys.S))
             {
@@ -192,7 +203,7 @@ namespace Platformer
             }
             
         }
-        private void animateEnemyCode()
+        private void Ranimatecode()
         {
             animateCount++;
             if (animateCount < animateSpeed)
@@ -232,6 +243,46 @@ namespace Platformer
                 animateCount = 0;
             }
 
+        }
+        private void Lanimatecode()
+        {
+            animateCount++;
+            if (animateCount < animateSpeed)
+            {
+                playerText = fplayer1;
+            }
+            else if (animateCount < animateSpeed * 1.2)
+            {
+                playerText = fplayer3;
+            }
+            else if (animateCount < animateSpeed * 1.4)
+            {
+                playerText = fplayer2;
+            }
+            else if (animateCount < animateSpeed * 1.6)
+            {
+                playerText = fplayer3;
+            }
+            else if (animateCount < animateSpeed * 1.8)
+            {
+                playerText = fplayer4;
+            }
+            else if (animateCount < animateSpeed * 2)
+            {
+                playerText = fplayer5;
+            }
+            else if (animateCount < animateSpeed * 2.2)
+            {
+                playerText = fplayer4;
+            }
+            //else if (animateCount < animateSpeed * 2.4)
+            //{
+            // playerText = player1;
+            //}
+            else
+            {
+                animateCount = 0;
+            }
         }
     }
 }
