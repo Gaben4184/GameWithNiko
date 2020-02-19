@@ -34,6 +34,7 @@ namespace Platformer
 
         //variables
         int state = 0;
+        int lives;
 
         //states
         Texture2D startText;
@@ -67,6 +68,7 @@ namespace Platformer
             state = 1;
 
             //player stuff 
+            lives = 3;
             playerRect = new Rectangle(100, 100, 100, 100);
             //animateRect = new Rectangle(100, 300, 24, 59);
             animateSpeed = 20;
@@ -139,6 +141,7 @@ namespace Platformer
             {
                 checkKeys();
                 animateEnemyCode();
+                checkCollisions();
             }
 
 
@@ -190,7 +193,14 @@ namespace Platformer
             {
                 playerRect.Y += 5;
             }
-            
+        }
+        private void checkCollisions()
+        {
+            if (playerRect.Intersects (chef1Rect))
+            {
+                playerRect.Location = new Point(0, 0);
+                lives -= 1;
+            }
         }
         private void animateEnemyCode()
         {
