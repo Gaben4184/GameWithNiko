@@ -24,7 +24,9 @@ namespace Platformer
         Texture2D player1;
         Texture2D player2;
         Texture2D player3;
-
+        Texture2D player4;
+        Texture2D player5;
+     
 
         //enemy stuff
         Texture2D chef1Text;
@@ -95,6 +97,8 @@ namespace Platformer
             player1 = Content.Load<Texture2D>("pizzasteve1");
             player2 = Content.Load<Texture2D>("pizzasteve2");
             player3 = Content.Load<Texture2D>("pizzasteve3");
+            player4 = Content.Load<Texture2D>("pizzasteve4");
+            player5 = Content.Load<Texture2D>("pizzasteve5");
 
             playerText = player1;
 
@@ -195,34 +199,34 @@ namespace Platformer
             {
                 playerText = player1;
             }
-            else if (animateCount < animateSpeed * 2)
+            else if (animateCount < animateSpeed * 1.2)
             {
                 playerText = player3;
             }
-            else if (animateCount < animateSpeed * 3)
+            else if (animateCount < animateSpeed * 1.4)
             {
                 playerText = player2;
             }
-            else if (animateCount < animateSpeed * 4)
+            else if (animateCount < animateSpeed * 1.6)
             {
                 playerText = player3;
             }
-            else if (animateCount < animateSpeed * 5)
+            else if (animateCount < animateSpeed * 1.8)
             {
                 playerText = player4;
             }
-            else if (animateCount < animateSpeed * 6)
+            else if (animateCount < animateSpeed * 2)
             {
                 playerText = player5;
             }
-            else if (animateCount < animateSpeed * 7)
+            else if (animateCount < animateSpeed * 2.2)
             {
                 playerText = player4;
             }
-            else if (animateCount < animateSpeed * 8)
-            {
-                playerText = player1;
-            }
+            //else if (animateCount < animateSpeed * 2.4)
+            //{
+               // playerText = player1;
+            //}
             else
             {
                 animateCount = 0;
