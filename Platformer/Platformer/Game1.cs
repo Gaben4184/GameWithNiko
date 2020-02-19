@@ -44,6 +44,7 @@ namespace Platformer
         //variables
         int state = 0;
         int lives;
+        int speed = 3;
 
         //states
         Texture2D startText;
@@ -160,7 +161,7 @@ namespace Platformer
             if (state == 2)
             {
                 checkKeys();
-               
+                chef1movement();
             }
 
 
@@ -303,6 +304,18 @@ namespace Platformer
             else
             {
                 animateCount = 0;
+            }
+        }
+        private void chef1movement()
+        {
+            chef1Rect.X += speed;
+            if (chef1Rect.X > 700)
+            {
+                speed *= -1;
+            }
+            if (chef1Rect.X < 0)
+            {
+                speed *= -1;
             }
         }
     }
