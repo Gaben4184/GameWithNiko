@@ -160,7 +160,7 @@ namespace Platformer
             if (state == 2)
             {
                 checkKeys();
-               
+                checkCollisions();
             }
 
 
