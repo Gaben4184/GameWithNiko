@@ -36,6 +36,11 @@ namespace Platformer
         Texture2D chef1Text;
         Rectangle chef1Rect;
 
+
+        //platform stuff
+        Texture2D floorText;
+        Rectangle floorRect;
+
         //variables
         int state = 0;
 
@@ -81,6 +86,9 @@ namespace Platformer
             //enemy stuff 
             chef1Rect = new Rectangle(200, 200, 100, 100);
 
+
+            //platform stuff
+            floorRect = new Rectangle(-1500, 300, 4100, 800);
             base.Initialize();
         }
 
@@ -115,6 +123,9 @@ namespace Platformer
             //enemy stuff 
             chef1Text = Content.Load<Texture2D>("chef1");
 
+
+            //platform stuff
+            floorText= Content.Load<Texture2D>("Floor");
         }
 
         /// <summary>
@@ -170,6 +181,7 @@ namespace Platformer
             }
             if (state == 2)
             {
+                spriteBatch.Draw(floorText, floorRect, Color.White);
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
                 spriteBatch.Draw(playerText, animateRect, Color.White);
