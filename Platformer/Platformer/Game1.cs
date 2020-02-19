@@ -223,10 +223,10 @@ namespace Platformer
             {
                 playerText = player4;
             }
-            //else if (animateCount < animateSpeed * 2.4)
-            //{
-               // playerText = player1;
-            //}
+            /*else if (animateCount < animateSpeed * 2.4)
+            {
+                playerText = player1;
+            }*/
             else
             {
                 animateCount = 0;
