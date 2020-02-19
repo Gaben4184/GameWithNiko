@@ -40,6 +40,7 @@ namespace Platformer
         //platform stuff
         Texture2D floorText;
         Rectangle floorRect;
+        //test
 
         //variables
         int state = 0;
