@@ -92,7 +92,7 @@ namespace Platformer
 
 
             //platform stuff
-            floorRect = new Rectangle(-1500, 300, 4100, 800);
+            floorRect = new Rectangle(000, 500, 1200, 350);
             base.Initialize();
         }
 
