@@ -35,6 +35,8 @@ namespace Platformer
         //enemy stuff
         Texture2D chef1Text;
         Rectangle chef1Rect;
+        //enemy animation
+      
 
 
         //platform stuff
