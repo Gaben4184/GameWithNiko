@@ -15,6 +15,9 @@ namespace Platformer
         //player stuff
         Texture2D playerText;
         Rectangle playerRect;
+
+        bool isJumping = false;
+
         //Added for animation
         Texture2D animateplayer;
         Rectangle animateRect;
@@ -35,6 +38,7 @@ namespace Platformer
         //enemy stuff
         Texture2D chef1Text;
         Rectangle chef1Rect;
+
         //enemy animation
       
 
@@ -42,6 +46,8 @@ namespace Platformer
         //platform stuff
         Texture2D floorText;
         Rectangle floorRect;
+        Rectangle platform;
+
         //test
 
         //variables
@@ -95,6 +101,7 @@ namespace Platformer
 
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
+            platform = new Rectangle(0, 540, 1200, 350);
             base.Initialize();
         }
 
@@ -228,7 +235,7 @@ namespace Platformer
                 playerRect.Location = new Point(0, 0);
                 lives -= 1;
             }
-            if (playerRect.Intersects (floorRect))
+            if (playerRect.Intersects (platform))
             {
                 playerRect.Location = new Point(0, 0);
             }
