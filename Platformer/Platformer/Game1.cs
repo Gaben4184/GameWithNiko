@@ -226,6 +226,10 @@ namespace Platformer
                 playerRect.Location = new Point(0, 0);
                 lives -= 1;
             }
+            if (playerRect.Intersects (floorRect))
+            {
+                playerRect.Location = new Point(0, 0);
+            }
         }
         private void Ranimatecode()
         {
