@@ -20,7 +20,7 @@ namespace Platformer
 
 
         //Added for animation
-        Texture2D animateplayer;
+        
         Rectangle animateRect;
         int animateCount = 0;
         int animateSpeed = 10;
@@ -41,8 +41,16 @@ namespace Platformer
         Rectangle chef1Rect;
 
         //enemy animation
+        Texture2D animatechef1;
+        Rectangle animateChef1Rect;
+        int animateChef1Count = 0;
+        int animateChef1Speed = 10;
+        int animateChef1NumPics = 3;
+        Texture2D chef1;
+        Texture2D chef1a;
 
-
+     
+       
 
         //platform stuff
         Texture2D floorText;
@@ -105,9 +113,14 @@ namespace Platformer
 
 
             //enemy stuff 
-            chef1Rect = new Rectangle(200, 200, 100, 100);
+            chef1Rect = new Rectangle(25, 200, 100, 100);
+            animateChef1Count = 0;
+            animateChef1Speed = 20;
+            animateChef1NumPics = 3;
+
             speed = 3;
 
+        
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
             platform = new Rectangle(0, 540, 1200, 350);
@@ -145,7 +158,13 @@ namespace Platformer
 
 
             //enemy stuff 
-            chef1Text = Content.Load<Texture2D>("chef1");
+            chef1 = Content.Load<Texture2D>("chef1");
+            chef1a = Content.Load<Texture2D>("fchef1");
+
+            chef1Text = chef1;
+
+       
+
 
 
             //platform stuff
@@ -359,10 +378,14 @@ namespace Platformer
             if (chef1Rect.X > 700)
             {
                 speed *= -1;
+                chef1Text = chef1a;
+                
             }
             if (chef1Rect.X < 0)
             {
                 speed *= -1;
+                chef1Text = chef1;
+                
             }
         }
         private void checkLives()
