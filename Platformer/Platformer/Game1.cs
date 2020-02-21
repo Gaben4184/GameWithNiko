@@ -16,7 +16,7 @@ namespace Platformer
         Texture2D playerText;
         Rectangle playerRect;
         //Added for animation
-        Texture2D animateplayer;
+        
         Rectangle animateRect;
         int animateCount = 0;
         int animateSpeed = 10;
@@ -35,9 +35,18 @@ namespace Platformer
         //enemy stuff
         Texture2D chef1Text;
         Rectangle chef1Rect;
+        
         //enemy animation
-      
+        Texture2D animatechef1;
+        Rectangle animateChef1Rect;
+        int animateChef1Count = 0;
+        int animateChef1Speed = 10;
+        int animateChef1NumPics = 3;
+        Texture2D chef1;
+        Texture2D chef1a;
 
+     
+       
 
         //platform stuff
         Texture2D floorText;
@@ -52,6 +61,9 @@ namespace Platformer
         //states
         Texture2D startText;
         Rectangle startRect;
+
+
+
 
 
         KeyboardState oldKB;
@@ -90,9 +102,13 @@ namespace Platformer
 
 
             //enemy stuff 
-            chef1Rect = new Rectangle(200, 200, 100, 100);
+            chef1Rect = new Rectangle(25, 200, 100, 100);
+            animateChef1Count = 0;
+            animateChef1Speed = 20;
+            animateChef1NumPics = 3;
 
 
+        
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
             base.Initialize();
@@ -111,7 +127,7 @@ namespace Platformer
             startText = Content.Load<Texture2D>("Meme5");
 
             //player stuff
-            
+
             player1 = Content.Load<Texture2D>("pizzasteve1");
             player2 = Content.Load<Texture2D>("pizzasteve2");
             player3 = Content.Load<Texture2D>("pizzasteve3");
@@ -127,11 +143,17 @@ namespace Platformer
 
 
             //enemy stuff 
-            chef1Text = Content.Load<Texture2D>("chef1");
+            chef1 = Content.Load<Texture2D>("chef1");
+            chef1a = Content.Load<Texture2D>("fchef1");
+
+            chef1Text = chef1;
+
+       
+
 
 
             //platform stuff
-            floorText= Content.Load<Texture2D>("Floor");
+            floorText = Content.Load<Texture2D>("Floor");
         }
 
         /// <summary>
@@ -166,6 +188,9 @@ namespace Platformer
                 checkKeys();
                 chef1movement();
                 checkCollisions();
+                
+
+
             }
 
 
@@ -192,6 +217,9 @@ namespace Platformer
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
                 spriteBatch.Draw(playerText, animateRect, Color.White);
+                spriteBatch.Draw(chef1Text, animateChef1Rect, Color.White);
+                
+
             }
 
             spriteBatch.End();
@@ -223,7 +251,7 @@ namespace Platformer
         }
         private void checkCollisions()
         {
-            if (playerRect.Intersects (chef1Rect))
+            if (playerRect.Intersects(chef1Rect))
             {
                 playerRect.Location = new Point(0, 0);
                 lives -= 1;
@@ -316,11 +344,17 @@ namespace Platformer
             if (chef1Rect.X > 700)
             {
                 speed *= -1;
+                chef1Text = chef1a;
+                
             }
             if (chef1Rect.X < 0)
             {
                 speed *= -1;
+                chef1Text = chef1;
+                
             }
         }
+        
+        
     }
 }
