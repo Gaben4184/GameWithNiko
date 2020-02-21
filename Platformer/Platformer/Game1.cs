@@ -49,8 +49,19 @@ namespace Platformer
         Texture2D chef1;
         Texture2D chef1a;
 
-     
-       
+        //enemy 2 stuff
+        Texture2D enemyText;
+        Rectangle enemyRect;
+
+        //enemy 2 animation
+        Texture2D animateenemy;
+        Rectangle animateenemyRect;
+        int animateenemyCount = 0;
+        int animateenemySpeed = 10;
+        int animateenemyNumPics = 3;
+        Texture2D enemy1;
+        Texture2D enemy2;
+
 
         //platform stuff
         Texture2D floorText;
@@ -64,6 +75,7 @@ namespace Platformer
         int lives;
         int speed;
         int jumpHeight;
+        int enemyspeed;
 
         //states
         Texture2D startText;
@@ -120,7 +132,15 @@ namespace Platformer
 
             speed = 3;
 
-        
+            //enemy 2 stuff
+            enemyRect = new Rectangle(600, 200, 100, 100);
+            animateenemyCount = 0;
+            animateenemySpeed = 20;
+            animateenemyNumPics = 3;
+
+            enemyspeed = 3;
+
+
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
             platform = new Rectangle(0, 540, 1200, 350);
@@ -163,9 +183,11 @@ namespace Platformer
 
             chef1Text = chef1;
 
-       
+            //enemy 2 stuff
+            enemy1 = Content.Load<Texture2D>("chef2");
+            enemy2 = Content.Load<Texture2D>("fchef2");
 
-
+            enemyText = enemy1;
 
             //platform stuff
             floorText = Content.Load<Texture2D>("Floor");
@@ -211,6 +233,7 @@ namespace Platformer
                 //chef1movement();
                 checkCollisions();
                 checkLives();
+                enemymovement();
             }
 
             base.Update(gameTime);
@@ -242,6 +265,7 @@ namespace Platformer
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 //spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
                 spriteBatch.Draw(playerText, animateRect, Color.White);
+                spriteBatch.Draw(enemyText, enemyRect, Color.White);
             }
             if (state == 4)
             {
@@ -393,6 +417,20 @@ namespace Platformer
             if (lives < 0)
             {
                 state = 5;
+            }
+        }
+        private void enemymovement()
+        {
+            enemyRect.X += enemyspeed;
+            if (enemyRect.X > 700)
+            {
+                enemyspeed *= -1;
+                enemyText = enemy2;
+            }
+            if (enemyRect.X < 0)
+            {
+                enemyspeed *= -1;
+                enemyText = enemy1;
             }
         }
     }
