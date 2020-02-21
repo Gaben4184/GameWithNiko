@@ -18,6 +18,7 @@ namespace Platformer
 
         bool isJumping = false;
 
+
         //Added for animation
         Texture2D animateplayer;
         Rectangle animateRect;
@@ -40,7 +41,7 @@ namespace Platformer
         Rectangle chef1Rect;
 
         //enemy animation
-      
+
 
 
         //platform stuff
@@ -53,13 +54,18 @@ namespace Platformer
         //variables
         int state = 0;
         int lives;
-        int speed = 3;
+        int speed;
+        int jumpHeight;
 
         //states
         Texture2D startText;
         Rectangle startRect;
+        Texture2D winText;
+        Rectangle winRect;
+        Texture2D loseText;
+        Rectangle loseRect;
 
-
+        KeyboardState kb;
         KeyboardState oldKB;
 
         public Game1()
@@ -83,12 +89,15 @@ namespace Platformer
 
             //states
             startRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            winRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            loseRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             state = 1;
 
             //player stuff 
             lives = 3;
             playerRect = new Rectangle(100, 100, 100, 100);
+
             //animateRect = new Rectangle(100, 300, 24, 59);
             animateSpeed = 20;
             animateNumPics = 3;
@@ -97,7 +106,7 @@ namespace Platformer
 
             //enemy stuff 
             chef1Rect = new Rectangle(200, 200, 100, 100);
-
+            speed = 3;
 
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
@@ -116,9 +125,11 @@ namespace Platformer
 
             //state stuff
             startText = Content.Load<Texture2D>("Meme5");
+            winText = Content.Load<Texture2D>("Meme4");
+            loseText = Content.Load<Texture2D>("house-house");
 
             //player stuff
-            
+
             player1 = Content.Load<Texture2D>("pizzasteve1");
             player2 = Content.Load<Texture2D>("pizzasteve2");
             player3 = Content.Load<Texture2D>("pizzasteve3");
@@ -138,7 +149,7 @@ namespace Platformer
 
 
             //platform stuff
-            floorText= Content.Load<Texture2D>("Floor");
+            floorText = Content.Load<Texture2D>("Floor");
         }
 
         /// <summary>
@@ -173,9 +184,15 @@ namespace Platformer
                 checkKeys();
                 chef1movement();
                 checkCollisions();
+                checkLives();
             }
-
-
+            if (state == 3 )
+            {
+                checkKeys();
+                //chef1movement();
+                checkCollisions();
+                checkLives();
+            }
 
             base.Update(gameTime);
         }
@@ -199,6 +216,21 @@ namespace Platformer
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
                 spriteBatch.Draw(playerText, animateRect, Color.White);
+            }
+            if (state == 3)
+            {
+                spriteBatch.Draw(floorText, floorRect, Color.White);
+                spriteBatch.Draw(playerText, playerRect, Color.White);
+                //spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
+                spriteBatch.Draw(playerText, animateRect, Color.White);
+            }
+            if (state == 4)
+            {
+                spriteBatch.Draw(winText, winRect, Color.White);
+            }
+            if (state == 5 )
+            {
+                spriteBatch.Draw(loseText, loseRect, Color.White);
             }
 
             spriteBatch.End();
@@ -230,12 +262,12 @@ namespace Platformer
         }
         private void checkCollisions()
         {
-            if (playerRect.Intersects (chef1Rect))
+            if (playerRect.Intersects(chef1Rect))
             {
                 playerRect.Location = new Point(0, 0);
                 lives -= 1;
             }
-            if (playerRect.Intersects (platform))
+            if (playerRect.Intersects(platform))
             {
                 playerRect.Location = new Point(0, 0);
             }
@@ -331,6 +363,13 @@ namespace Platformer
             if (chef1Rect.X < 0)
             {
                 speed *= -1;
+            }
+        }
+        private void checkLives()
+        {
+            if (lives < 0)
+            {
+                state = 5;
             }
         }
     }
