@@ -64,6 +64,7 @@ namespace Platformer
         int lives;
         int speed;
         int jumpHeight;
+        int gravSpeed;
 
         //states
         Texture2D startText;
@@ -100,11 +101,11 @@ namespace Platformer
             winRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             loseRect = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
-            state = 1;
+            
 
             //player stuff 
-            lives = 3;
-            playerRect = new Rectangle(100, 100, 100, 100);
+            
+            playerRect = new Rectangle(100, 450, 100, 100);
 
             //animateRect = new Rectangle(100, 300, 24, 59);
             animateSpeed = 20;
@@ -118,8 +119,12 @@ namespace Platformer
             animateChef1Speed = 20;
             animateChef1NumPics = 3;
 
+            //variables
             speed = 3;
-
+            lives = 3;
+            state = 1;
+            jumpHeight = 100;
+            gravSpeed = 4;
         
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
@@ -204,6 +209,7 @@ namespace Platformer
                 chef1movement();
                 checkCollisions();
                 checkLives();
+                //updatePlatform();
             }
             if (state == 3 )
             {
@@ -211,6 +217,7 @@ namespace Platformer
                 //chef1movement();
                 checkCollisions();
                 checkLives();
+                //updatePlatform();
             }
 
             base.Update(gameTime);
@@ -265,19 +272,13 @@ namespace Platformer
                 playerRect.X -= 5;
                 Lanimatecode();
             }
-            if (kb.IsKeyDown(Keys.W))
-            {
-                playerRect.Y -= 5;
-            }
+            
             if (kb.IsKeyDown(Keys.D))
             {
                 playerRect.X += 5;
                 Ranimatecode();
             }
-            if (kb.IsKeyDown(Keys.S))
-            {
-                playerRect.Y += 5;
-            }
+            
         }
         private void checkCollisions()
         {
@@ -288,7 +289,7 @@ namespace Platformer
             }
             if (playerRect.Intersects(platform))
             {
-                playerRect.Location = new Point(0, 0);
+                
             }
         }
         private void Ranimatecode()
@@ -393,6 +394,52 @@ namespace Platformer
             if (lives < 0)
             {
                 state = 5;
+            }
+        }
+        private void updatePlatform()
+        {
+            if (onFloor() && kb.IsKeyDown (Keys.Space))
+            {
+                isJumping = true;
+                jump();
+            }
+            if (!onFloor() && isJumping == false)
+            {
+                fall();
+            }
+            if (!onFloor() && isJumping == true)
+            {
+                jump();
+            }
+        }
+        private bool onFloor()
+        {
+            Rectangle testfloor = new Rectangle(playerRect.X + 20, playerRect.Y = playerRect.Height, playerRect.Width - 40, 2);
+
+            if (testfloor.Intersects (platform ))
+            {
+                isJumping = false;
+                jumpHeight = 100;
+                playerRect.Y = platform.Y - playerRect.Height;
+                return true;
+            }
+            return false;
+        }
+        private void fall()
+        {
+            playerRect.Y += speed;
+        }
+        private void jump()
+        {
+            if (jumpHeight > 0)
+            {
+                jumpHeight -= speed;
+                playerRect.Y -= speed;
+                isJumping = true;
+            }
+            else
+            {
+                isJumping = false;
             }
         }
     }
