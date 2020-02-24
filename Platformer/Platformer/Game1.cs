@@ -94,7 +94,7 @@ namespace Platformer
 
             //player stuff 
             lives = 3;
-            playerRect = new Rectangle(100, 100, 100, 100);
+            playerRect = new Rectangle(100, 100, 50, 50);
             //animateRect = new Rectangle(100, 300, 24, 59);
             animateSpeed = 20;
             animateNumPics = 3;
@@ -102,7 +102,7 @@ namespace Platformer
 
 
             //enemy stuff 
-            chef1Rect = new Rectangle(25, 200, 100, 100);
+            chef1Rect = new Rectangle(25, 200, 50, 50);
             animateChef1Count = 0;
             animateChef1Speed = 20;
             animateChef1NumPics = 3;
