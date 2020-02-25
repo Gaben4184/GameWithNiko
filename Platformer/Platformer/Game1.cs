@@ -115,6 +115,8 @@ namespace Platformer
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
             blockRect = new Rectangle(300, 200, 50, 50);
+            
+            
             base.Initialize();
         }
 
@@ -197,7 +199,10 @@ namespace Platformer
 
 
             }
-
+            if (state == 2)
+            {
+                
+            }
 
 
             base.Update(gameTime);
@@ -220,6 +225,7 @@ namespace Platformer
             {
                 spriteBatch.Draw(floorText, floorRect, Color.White);
                 spriteBatch.Draw(blockText, blockRect, Color.White);
+               
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
                 spriteBatch.Draw(playerText, animateRect, Color.White);
