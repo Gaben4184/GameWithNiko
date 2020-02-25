@@ -62,7 +62,7 @@ namespace Platformer
         //variables
         int state = 0;
         int lives;
-        int speed;
+        int speed,speedJ;
         int jumpHeight;
         int gravSpeed;
 
@@ -77,6 +77,7 @@ namespace Platformer
         KeyboardState kb;
         KeyboardState oldKB;
 
+        SpriteFont test;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -105,7 +106,7 @@ namespace Platformer
 
             //player stuff 
             
-            playerRect = new Rectangle(100, 450, 100, 100);
+            playerRect = new Rectangle(0, 540, 100, 100);
 
             //animateRect = new Rectangle(100, 300, 24, 59);
             animateSpeed = 20;
@@ -121,6 +122,7 @@ namespace Platformer
 
             //variables
             speed = 3;
+            speedJ = 3;
             lives = 3;
             state = 1;
             jumpHeight = 100;
@@ -128,7 +130,7 @@ namespace Platformer
         
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
-            platform = new Rectangle(0, 540, 1200, 350);
+            platform = new Rectangle(000, 540, 1200, 350);
             base.Initialize();
         }
 
@@ -168,8 +170,8 @@ namespace Platformer
 
             chef1Text = chef1;
 
-       
 
+            test = Content.Load<SpriteFont>("File2");
 
 
             //platform stuff
@@ -209,7 +211,7 @@ namespace Platformer
                 chef1movement();
                 checkCollisions();
                 checkLives();
-                //updatePlatform();
+                updatePlatform();
             }
             if (state == 3 )
             {
@@ -259,6 +261,7 @@ namespace Platformer
                 spriteBatch.Draw(loseText, loseRect, Color.White);
             }
 
+            spriteBatch.DrawString(test, "" + jumpHeight + " " + state, new Vector2(50, 50), Color.Red);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -282,15 +285,15 @@ namespace Platformer
         }
         private void checkCollisions()
         {
-            if (playerRect.Intersects(chef1Rect))
-            {
-                playerRect.Location = new Point(0, 0);
-                lives -= 1;
-            }
-            if (playerRect.Intersects(platform))
-            {
-                
-            }
+            //if (playerRect.Intersects(chef1Rect))
+            //{
+            //    playerRect.Location = new Point(0, 0);
+            //    lives -= 1;
+            //}
+            //if (playerRect .Intersects (platform ))
+            //{
+            //    playerRect.Location = new Point (0,0);
+            //}
         }
         private void Ranimatecode()
         {
@@ -414,27 +417,27 @@ namespace Platformer
         }
         private bool onFloor()
         {
-            Rectangle testfloor = new Rectangle(playerRect.X + 20, playerRect.Y = playerRect.Height, playerRect.Width - 40, 2);
+            Rectangle testfloor = new Rectangle(playerRect.X + 10, playerRect.Y + playerRect.Height, playerRect.Width - 10, 3);
 
-            if (testfloor.Intersects (platform ))
+            if (testfloor.Intersects(platform))
             {
                 isJumping = false;
                 jumpHeight = 100;
-                playerRect.Y = platform.Y - playerRect.Height;
+                playerRect.Y = platform.Y - playerRect.Height ;
                 return true;
             }
             return false;
         }
         private void fall()
         {
-            playerRect.Y += speed;
+            playerRect.Y += speedJ;
         }
         private void jump()
         {
             if (jumpHeight > 0)
             {
-                jumpHeight -= speed;
-                playerRect.Y -= speed;
+                jumpHeight -= speedJ;
+                playerRect.Y -= speedJ;
                 isJumping = true;
             }
             else
