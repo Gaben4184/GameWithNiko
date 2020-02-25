@@ -68,6 +68,9 @@ namespace Platformer
         Rectangle floorRect;
         Rectangle platform;
 
+
+        Texture2D blockText;
+        Rectangle blockRect;
         //test
 
         //variables
@@ -127,7 +130,7 @@ namespace Platformer
 
 
             //enemy stuff 
-            chef1Rect = new Rectangle(25, 200, 50, 50);
+            chef1Rect = new Rectangle(25, 200, 50, 75);
             animateChef1Count = 0;
             animateChef1Speed = 20;
             animateChef1NumPics = 3;
@@ -153,6 +156,9 @@ namespace Platformer
 
             //platform stuff
             floorRect = new Rectangle(000, 500, 1200, 350);
+            blockRect = new Rectangle(300, 200, 50, 50);
+            
+            
             platform = new Rectangle(000, 540, 1200, 350);
             base.Initialize();
         }
@@ -204,6 +210,7 @@ namespace Platformer
 
             //platform stuff
             floorText = Content.Load<Texture2D>("Floor");
+            blockText = Content.Load<Texture2D>("block");
         }
 
         /// <summary>
@@ -270,6 +277,8 @@ namespace Platformer
             if (state == 2)
             {
                 spriteBatch.Draw(floorText, floorRect, Color.White);
+                spriteBatch.Draw(blockText, blockRect, Color.White);
+               
                 spriteBatch.Draw(playerText, playerRect, Color.White);
                 spriteBatch.Draw(chef1Text, chef1Rect, Color.White);
                 spriteBatch.Draw(playerText, animateRect, Color.White);
@@ -314,15 +323,11 @@ namespace Platformer
         }
         private void checkCollisions()
         {
-            //if (playerRect.Intersects(chef1Rect))
-            //{
-            //    playerRect.Location = new Point(0, 0);
-            //    lives -= 1;
-            //}
-            //if (playerRect .Intersects (platform ))
-            //{
-            //    playerRect.Location = new Point (0,0);
-            //}
+            if (playerRect.Intersects(chef1Rect))
+            {
+                playerRect.Location = new Point(0, 0);
+                lives -= 1;
+            }
         }
         private void Ranimatecode()
         {
