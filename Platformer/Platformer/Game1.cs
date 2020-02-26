@@ -19,7 +19,7 @@ namespace Platformer
         //Enemy stuff
         Texture2D chef1Text;
         Rectangle chef1Rect;
-
+       
         //variables
         KeyboardState oldKB;
         int state = 0;
